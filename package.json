@@ -1,0 +1,35 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/shelljs": "^0.8.3",
+    "@types/superagent": "^3.8.4",
+    "docdash": "^1.0.2",
+    "doctrine": "^3.0.0",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "jsdoc": "^3.5.5",
+    "lerna": "^3.13.0",
+    "rollup": "^1.1.2",
+    "shelljs": "^0.8.3",
+    "uglify-js": "^3.4.9"
+  },
+  "workspaces": {
+    "packages":["packages/*"],
+    "nohoist": [
+      "**/@oclif/**",
+      "**/typescript/**"
+    ]
+  },
+  "dependencies": {
+    "@paper/paper-api": "file:packages/paper-api",
+    "@paper/paperspace-generator": "file:packages/paper-generator",
+    "@paper/cli-api": "file:packages/paper-cli"
+  },
+  "scripts": {}
+}

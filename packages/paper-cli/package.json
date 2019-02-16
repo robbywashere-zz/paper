@@ -1,0 +1,62 @@
+{
+  "name": "@paper/paper-cli",
+  "version": "0.0.0",
+  "author": "robby https://tinyfunc.com",
+  "workspaces": {
+    "nohoist": [
+      "**/@oclif/**"
+    ]
+  },
+  "bin": {
+    "api-cli": "./bin/run"
+  },
+  "bugs": "https://github.com/robbywashere/api-cli/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/dev-cli": "^1.21.0",
+    "@oclif/plugin-help": "^2",
+    "@paper/paper-api": "file:../paper-api",
+    "@types/superagent": "^3.8.6",
+    "globby": "^9.0.0",
+    "superagent": "^4.1.0",
+    "tslib": "^1",
+    "typescript": "^3.3.3"
+  },
+  "engines": {
+    "node": ">=10.15.1"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/robbywashere/cli-api",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "api-cli",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "robbywashere/cli-api",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "tslint -p test -t stylish",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts",
+  "devDependencies": {
+    "@oclif/command": "^1.5.10",
+    "@oclif/config": "^1.12.6",
+    "ts-node": "^8.0.2"
+  }
+}

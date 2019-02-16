@@ -1,0 +1,51 @@
+{
+  "name": "{cliName}",
+  "version": "0.0.0",
+  "author": "{authorInfo}",
+  "bin": {
+    "api-cli": "./bin/run"
+  },
+  "bugs": "https://github.com/{ghUser}/api-cli/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
+    "@oclif/dev-cli": "^1.21.0",
+    "@types/superagent": "^3.8.6",
+    "superagent": "^4.1.0",
+    "globby": "^9.0.0",
+    "tslib": "^1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=10.15.1"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/{ghUser}/{cliName}",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "api-cli",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "{ghUser}/{cliName}",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "tslint -p test -t stylish",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
