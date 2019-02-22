@@ -1,0 +1,43 @@
+import { SwagDefMethod, FlagParam } from "../typeDef";
+import { makeCliFlags } from "./cliFlags";
+export function makeCliCommand(def: SwagDefMethod) {
+  let CombinedParams: FlagParam[] = [];
+  let MaskedParams: FlagParam[] = [];
+  [...def.CliParams, ...def.AllParams].forEach(param => {
+    if (param.name.match(/password/i)) {
+      CombinedParams.push({
+        ...param,
+        type: "boolean",
+        hiddenPrompt: !!param.required
+      });
+      MaskedParams.push(param);
+    } else {
+      CombinedParams.push({ ...param });
+    }
+  });
+  const optionalMasked = JSON.stringify(
+    MaskedParams.filter(p => !p.required).map(p => p.name)
+  );
+  const requiredMasked = JSON.stringify(
+    MaskedParams.filter(p => p.required).map(p => p.name)
+  );
+  const flags = makeCliFlags(CombinedParams);
+  const className = `${def.OpId}`;
+  const description = JSON.stringify(def.Description || "");
+  const awaitAuth = !def.SkipAuth ? `await this.auth();` : "";
+  return `
+  import { flags } from "@oclif/command";
+  import { BaseCommand } from "../BaseCommand";
+
+  export default class ${className} extends BaseCommand {
+    static description = ${description}
+    static flags = ${flags}
+    async run() {
+      ${awaitAuth}
+      const params = await this.params(
+          this.parse(${className}).flags, ${optionalMasked}, ${requiredMasked}
+      );
+      return this.client.${def.OpId}(params);
+    }
+  }`;
+}

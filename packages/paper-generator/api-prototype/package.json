@@ -1,0 +1,23 @@
+{
+  "name": "@paper/paper-api",
+  "version": "1.0.0",
+  "license": "MIT",
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "es2015": "dist/es2015/index.js",
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/paperspace-api-ts.min.js",
+  "engines": {
+    "node": ">=10.15.1"
+  },
+  "scripts": {
+    "docs": "jsdoc -c jsdoc.json -R README.md",
+    "build": "npm run build:es2015 && npm run build:esm && npm run build:cjs && npm run build:umd && npm run build:umd:min",
+    "build:es2015": "tsc --module es2015 --target es2015 --outDir dist/es2015",
+    "build:esm": "tsc --module es2015 --target es5 --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir dist/cjs",
+    "build:umd": "rollup --format umd --name PaperspaceApi -m  --o dist/umd/paperspace-api-ts.js dist/esm/index.js",
+    "build:umd:min": "cd dist/umd && uglifyjs --compress --mangle --source-map --output paperspace-api-ts.min.js -- paperspace-api-ts.js && gzip paperspace-api-ts.min.js -c > paperspace-api-ts.min.js.gz"
+  },
+  "dependencies": {}
+}

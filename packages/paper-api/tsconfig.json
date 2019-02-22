@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib",
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2017", "dom"],
+    "composite": true,
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
