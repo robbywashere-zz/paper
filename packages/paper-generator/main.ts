@@ -7,10 +7,13 @@ import { makeCliCommand } from "./templates/cliCommand";
 import { writeFileSync } from "fs";
 import { ObjTmpl } from "./lib";
 import { SwagDef } from "./typeDef";
+import { pathToFileURL } from "url";
 
-const CLI_BUILD = join(__dirname, "..", "paper-cli");
+const CLI_NAME = "paper-cli";
+const API_NAME = "paper-api";
+const CLI_BUILD = join(__dirname, "..", CLI_NAME);
 const CLI_PROTO = join(__dirname, "cli-prototype");
-const API_BUILD = join(__dirname, "..", "paper-api");
+const API_BUILD = join(__dirname, "..", API_NAME);
 const API_PROTO = join(__dirname, "api-prototype");
 const API_PATH = join(__dirname, "..", "paper-api", "src", "index.ts");
 const CMD_DIR = join(CLI_BUILD, "src", "commands");
@@ -25,6 +28,17 @@ const PROJECT_INFO = {
 
 const ApiDef = swag(require("./swagger2.json"), "Api");
 
+function checkStatus() {
+  const checkPath = (name: string) => (path: string) =>
+    path.startsWith(join("packages", name));
+  const status = $.exec("git diff --name-only")
+    .toString()
+    .split("\n");
+  return status.some(checkPath(CLI_NAME)) || status.some(checkPath(API_NAME));
+}
+
+if (checkStatus())
+  throw new Error(`Uncommited changes, aborting to avoid overwrite...`);
 Build(ApiDef);
 
 function Build(swagDef: SwagDef) {

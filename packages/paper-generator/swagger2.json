@@ -10,7 +10,7 @@
     "https"
   ],
   "paths": {
-    "/apiTokens/createPublic": {
+    "/users/login": {
       "post": {
         "consumes": [
           "application/json"
@@ -18,17 +18,15 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "request body params",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/LoginUserRequestParams"
-            }
+        "parameters": [{
+          "description": "request body params",
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/LoginUserRequestParams"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Expected response to a valid request",
@@ -56,8 +54,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Id of the job to get artifacts for",
             "in": "query",
             "name": "jobId",
@@ -93,27 +90,23 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "jobs"
         ],
         "operationId": "JobsArtifactsGet",
         "summary": "Get the artifacts files for the job with the given id",
-        "x-cli-parameters": [
-          {
-            "description": "Optional; return JSON object instead of writing to standard out.  '--json' with no value is equivalent to true.",
-            "in": "query",
-            "name": "json",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
+        "x-cli-parameters": [{
+          "description": "Optional; return JSON object instead of writing to standard out.  '--json' with no value is equivalent to true.",
+          "in": "query",
+          "name": "json",
+          "required": false,
+          "schema": {
+            "type": "boolean"
           }
-        ]
+        }]
       }
     },
     "/jobs/artifactsList": {
@@ -121,8 +114,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Id of the job to list artifacts for",
             "in": "query",
             "name": "jobId",
@@ -165,27 +157,23 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "jobs"
         ],
         "operationId": "JobsArtifactsList",
         "summary": "List job artifact files for the specified job",
-        "x-cli-parameters": [
-          {
-            "description": "Optional; return JSON object instead of writing to standard out.  '--json' with no value is equivalent to true.",
-            "in": "query",
-            "name": "json",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
+        "x-cli-parameters": [{
+          "description": "Optional; return JSON object instead of writing to standard out.  '--json' with no value is equivalent to true.",
+          "in": "query",
+          "name": "json",
+          "required": false,
+          "schema": {
+            "type": "boolean"
           }
-        ]
+        }]
       }
     },
     "/jobs/createJob": {
@@ -196,17 +184,15 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "request body params",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/JobsCreateRequestParams"
-            }
+        "parameters": [{
+          "description": "request body params",
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/JobsCreateRequestParams"
           }
-        ],
+        }],
         "responses": {
           "201": {
             "description": "Expected response to a valid request",
@@ -221,11 +207,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "jobs"
         ],
@@ -238,8 +222,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Optional region to match on",
             "in": "query",
             "name": "region",
@@ -282,11 +265,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "jobs"
         ],
@@ -299,8 +280,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Id of the job to wait for",
             "in": "query",
             "name": "jobId",
@@ -329,11 +309,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "jobs"
         ],
@@ -346,8 +324,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Optional project to match on.  If neither project nor projectId are provided, this is taken from the .ps_project/config.json file, or the current directory name.  Specify 'all' to list jobs for all projects associated with the user or team if the user is on a team.",
             "in": "query",
             "name": "project",
@@ -425,11 +402,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "jobs"
         ],
@@ -442,8 +417,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Id of the job to logs",
             "in": "query",
             "name": "jobId",
@@ -486,27 +460,23 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "jobs"
         ],
         "operationId": "JobsLogs",
         "summary": "Stream the logs for the job with the given id, while the job is running or after it has stopped",
-        "x-cli-parameters": [
-          {
-            "description": "Optional; return JSON object instead of writing to standard out.  '--json' with no value is equivalent to true.",
-            "in": "query",
-            "name": "json",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
+        "x-cli-parameters": [{
+          "description": "Optional; return JSON object instead of writing to standard out.  '--json' with no value is equivalent to true.",
+          "in": "query",
+          "name": "json",
+          "required": false,
+          "schema": {
+            "type": "boolean"
           }
-        ]
+        }]
       }
     },
     "/jobs/{jobId}/artifactsDestroy": {
@@ -517,8 +487,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "The id of the job to destroy artifacts for",
             "in": "path",
             "name": "jobId",
@@ -545,11 +514,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "jobs"
         ],
@@ -562,15 +529,13 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "Id of the job to clone",
-            "in": "path",
-            "name": "jobId",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [{
+          "description": "Id of the job to clone",
+          "in": "path",
+          "name": "jobId",
+          "required": true,
+          "type": "string"
+        }],
         "responses": {
           "200": {
             "description": "Expected response to a valid request",
@@ -585,11 +550,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "jobs"
         ],
@@ -602,15 +565,13 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "The id of the job to destroy",
-            "in": "path",
-            "name": "jobId",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [{
+          "description": "The id of the job to destroy",
+          "in": "path",
+          "name": "jobId",
+          "required": true,
+          "type": "string"
+        }],
         "responses": {
           "204": {
             "description": "Expected response to a valid request"
@@ -622,11 +583,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "jobs"
         ],
@@ -639,15 +598,13 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "Id of the job to shut down",
-            "in": "path",
-            "name": "jobId",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [{
+          "description": "Id of the job to shut down",
+          "in": "path",
+          "name": "jobId",
+          "required": true,
+          "type": "string"
+        }],
         "responses": {
           "204": {
             "description": "Expected response to a valid request"
@@ -659,11 +616,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "jobs"
         ],
@@ -679,17 +634,15 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "request body params",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/MachinesCreateRequestParams"
-            }
+        "parameters": [{
+          "description": "request body params",
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/MachinesCreateRequestParams"
           }
-        ],
+        }],
         "responses": {
           "201": {
             "description": "Expected response to a valid request",
@@ -704,11 +657,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "machines"
         ],
@@ -721,8 +672,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Name of the region: either 'East Coast (NY2)', 'West Coast (CA1)', or 'Europe (AMS1)'",
             "in": "query",
             "name": "region",
@@ -751,11 +701,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "machines"
         ],
@@ -768,8 +716,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Id of the machine to wait for",
             "in": "query",
             "name": "machineId",
@@ -798,11 +745,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "machines"
         ],
@@ -815,8 +760,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Optional machine id to match on. Note: must be specified as \"machineId\", not \"id\".",
             "in": "query",
             "name": "machineId",
@@ -1006,11 +950,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "machines"
         ],
@@ -1023,8 +965,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Id of the machine to get utilization data for",
             "in": "query",
             "name": "machineId",
@@ -1053,11 +994,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "machines"
         ],
@@ -1073,8 +1012,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "The id of the machine to destroy",
             "in": "path",
             "name": "machineId",
@@ -1101,11 +1039,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "machines"
         ],
@@ -1118,15 +1054,13 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "Id of the machine to restart",
-            "in": "path",
-            "name": "machineId",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [{
+          "description": "Id of the machine to restart",
+          "in": "path",
+          "name": "machineId",
+          "required": true,
+          "type": "string"
+        }],
         "responses": {
           "204": {
             "description": "Expected response to a valid request"
@@ -1138,11 +1072,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "machines"
         ],
@@ -1155,15 +1087,13 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "Id of the machine to start",
-            "in": "path",
-            "name": "machineId",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [{
+          "description": "Id of the machine to start",
+          "in": "path",
+          "name": "machineId",
+          "required": true,
+          "type": "string"
+        }],
         "responses": {
           "204": {
             "description": "Expected response to a valid request"
@@ -1175,11 +1105,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "machines"
         ],
@@ -1192,15 +1120,13 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "Id of the machine to shut down",
-            "in": "path",
-            "name": "machineId",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [{
+          "description": "Id of the machine to shut down",
+          "in": "path",
+          "name": "machineId",
+          "required": true,
+          "type": "string"
+        }],
         "responses": {
           "204": {
             "description": "Expected response to a valid request"
@@ -1212,11 +1138,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "machines"
         ],
@@ -1232,8 +1156,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Id of the machine to update",
             "in": "path",
             "name": "machineId",
@@ -1260,11 +1183,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "machines"
         ],
@@ -1277,8 +1198,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Optional network id to match on",
             "in": "query",
             "name": "id",
@@ -1342,11 +1262,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "networks"
         ],
@@ -1362,17 +1280,15 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "request body params",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ScriptsCreateRequestParams"
-            }
+        "parameters": [{
+          "description": "request body params",
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/ScriptsCreateRequestParams"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Expected response to a valid request",
@@ -1387,11 +1303,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "scripts"
         ],
@@ -1404,15 +1318,13 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "Id of the script to show",
-            "in": "query",
-            "name": "scriptId",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [{
+          "description": "Id of the script to show",
+          "in": "query",
+          "name": "scriptId",
+          "required": true,
+          "type": "string"
+        }],
         "responses": {
           "200": {
             "description": "Expected response to a valid request",
@@ -1427,11 +1339,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "scripts"
         ],
@@ -1444,15 +1354,13 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "Id of the script to get text for",
-            "in": "query",
-            "name": "scriptId",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [{
+          "description": "Id of the script to get text for",
+          "in": "query",
+          "name": "scriptId",
+          "required": true,
+          "type": "string"
+        }],
         "responses": {
           "200": {
             "description": "Expected response to a valid request",
@@ -1467,11 +1375,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "scripts"
         ],
@@ -1484,8 +1390,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Optional script id to match on",
             "in": "query",
             "name": "id",
@@ -1556,11 +1461,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "scripts"
         ],
@@ -1573,15 +1476,13 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "description": "The id of the script to destroy",
-            "in": "path",
-            "name": "scriptId",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [{
+          "description": "The id of the script to destroy",
+          "in": "path",
+          "name": "scriptId",
+          "required": true,
+          "type": "string"
+        }],
         "responses": {
           "204": {
             "description": "Expected response to a valid request"
@@ -1593,11 +1494,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "scripts"
         ],
@@ -1610,8 +1509,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Optional template id to match on",
             "in": "query",
             "name": "id",
@@ -1682,11 +1580,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "templates"
         ],
@@ -1699,8 +1595,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "description": "Optional user id to match on",
             "in": "query",
             "name": "id",
@@ -1757,11 +1652,9 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{
+          "ApiKeyAuth": []
+        }],
         "tags": [
           "users"
         ],
@@ -2398,10 +2291,6 @@
     },
     "LoginUserRequestParams": {
       "properties": {
-        "apiToken": {
-          "description": "Optional name of an existing API token for the user's account",
-          "type": "string"
-        },
         "email": {
           "description": "Email address of the paperspace user to log in",
           "type": "string",
