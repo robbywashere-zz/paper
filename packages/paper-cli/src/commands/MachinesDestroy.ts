@@ -11,7 +11,7 @@
     }), 
     "releasePublicIp": flags.boolean({
       description: "releases any assigned public ip address for the machine; defaults to false",
-      required: undefined,  
+      required: false,  
     }),} 
     async run() {
       await this.auth();

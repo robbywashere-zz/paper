@@ -11,31 +11,31 @@
     }), 
     "autoSnapshotFrequency": flags.integer({
       description: "One of 'hour', 'day', 'week', or null",
-      required: undefined,  
+      required: false,  
     }), 
     "autoSnapshotSaveCount": flags.integer({
       description: "Number of snapshots to save",
-      required: undefined,  
+      required: false,  
     }), 
     "dynamicPublicIp": flags.boolean({
       description: "If true, assigns a new public ip address on machine start and releases it from the account on machine stop",
-      required: undefined,  
+      required: false,  
     }), 
     "machineName": flags.string({
       description: "New name for the machine",
-      required: undefined,  
+      required: false,  
     }), 
     "performAutoSnapshot": flags.boolean({
       description: "Perform auto snapshots",
-      required: undefined,  
+      required: false,  
     }), 
     "shutdownTimeoutForces": flags.boolean({
       description: "Force shutdown at shutdown timeout, even if there is a Paperspace client connection",
-      required: undefined,  
+      required: false,  
     }), 
     "shutdownTimeoutInHours": flags.integer({
       description: "Number of hours before machine is shutdown if no one is logged in via the Paperspace client",
-      required: undefined,  
+      required: false,  
     }),} 
     async run() {
       await this.auth();

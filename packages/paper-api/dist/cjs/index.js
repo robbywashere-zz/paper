@@ -16,15 +16,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var superagent_1 = __importDefault(require("superagent"));
 var Api = /** @class */ (function () {
-    function Api(apiKey) {
+    function Api(baseUrl, apiKey) {
         var _this = this;
         this.apiKey = apiKey;
+        this.baseUrl = "https://api.paperspace.io/";
         this.request = function (req, skipAuth) {
             if (skipAuth === void 0) { skipAuth = false; }
             if (!_this.apiKey && !skipAuth) {
                 throw new Error("No api key, try #.SetToken(apiKey: string)");
             }
-            var R = superagent_1.default(req.method, req.path);
+            var R = superagent_1.default(req.method, _this.baseUrl + req.path);
             if (req.bodyParams)
                 R = R.send(req.bodyParams);
             if (req.queryParams)
@@ -33,6 +34,8 @@ var Api = /** @class */ (function () {
                 ? R
                 : R.set("x-api-key", _this.apiKey).set("accept", "json");
         };
+        if (baseUrl)
+            this.baseUrl = baseUrl;
     }
     Api.prototype.SetRequestMethod = function (fn) {
         this.request = fn.bind(this);

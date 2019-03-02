@@ -11,7 +11,7 @@
     }), 
     "files": flags.string({
       description: "Optional; if destroying only certain files, a wildcard pattern to match against, e.g., \"myfiles*\".  Note: if you include a wildcard you must double-quote the files argument.",
-      required: undefined,  
+      required: false,  
     }),} 
     async run() {
       await this.auth();

@@ -1,12 +1,13 @@
 import request from "superagent";
 export default class Api {
-    constructor(apiKey) {
+    constructor(baseUrl, apiKey) {
         this.apiKey = apiKey;
+        this.baseUrl = "https://api.paperspace.io/";
         this.request = (req, skipAuth = false) => {
             if (!this.apiKey && !skipAuth) {
                 throw new Error(`No api key, try #.SetToken(apiKey: string)`);
             }
-            let R = request(req.method, req.path);
+            let R = request(req.method, this.baseUrl + req.path);
             if (req.bodyParams)
                 R = R.send(req.bodyParams);
             if (req.queryParams)
@@ -15,6 +16,8 @@ export default class Api {
                 ? R
                 : R.set("x-api-key", this.apiKey).set("accept", "json");
         };
+        if (baseUrl)
+            this.baseUrl = baseUrl;
     }
     SetRequestMethod(fn) {
         this.request = fn.bind(this);

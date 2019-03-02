@@ -31,15 +31,12 @@ export abstract class BaseCommand extends Command {
     return result;
   }
 
-  async params<
-    T extends {},
-    Req extends keyof T & string,
-    Opt extends keyof T & string
-  >(flags: T, optional: Array<Opt>, required: Array<Req>) {
-    const prompts = await this.prompt(
-      optional.filter(k => flags[k]),
-      required.filter(k => !flags[k])
-    );
+  async params<T extends {}, Req extends string, Opt extends keyof T & string>(
+    flags: T,
+    optional: Array<Opt>,
+    required: Array<Req>
+  ) {
+    const prompts = await this.prompt(optional.filter(k => flags[k]), required);
     for (let k of optional) delete flags[k];
     return { ...flags, ...prompts } as Pick<T, Exclude<keyof T, Req | Opt>> &
       typeof prompts;

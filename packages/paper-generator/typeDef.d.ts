@@ -2,6 +2,7 @@ export type SwagDef = {
   Types: string[];
   Methods: SwagDefMethod[];
   ClassName: string;
+  Server: string;
 };
 export type FlagParam = { hiddenPrompt?: boolean } & SwagParam;
 export type SwagParam = {
@@ -30,6 +31,9 @@ export type SwagDefMethod = {
   Path: string;
 };
 export type SwaggerSpec = {
+  host: string;
+  basePath: string;
+  schemes: string[];
   paths: {
     [key: string]: {
       [key: string]: {

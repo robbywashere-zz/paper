@@ -7,7 +7,7 @@
     static flags = {  
     "apiToken": flags.string({
       description: "Optional name of an existing API token for the user's account",
-      required: undefined,  
+      required: false,  
     }), 
     "email": flags.string({
       description: "Email address of the paperspace user to log in",

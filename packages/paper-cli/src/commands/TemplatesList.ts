@@ -7,35 +7,35 @@
     static flags = {  
     "id": flags.string({
       description: "Optional template id to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "name": flags.string({
       description: "Optional name to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "label": flags.string({
       description: "Optional label to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "os": flags.string({
       description: "Optional os to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "dtCreated": flags.string({
       description: "Optional datetime created value to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "teamId": flags.string({
       description: "Optional teamId to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "userId": flags.string({
       description: "Optional userId to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "region": flags.string({
       description: "Optional region to match on",
-      required: undefined,  
+      required: false,  
     }),} 
     async run() {
       await this.auth();

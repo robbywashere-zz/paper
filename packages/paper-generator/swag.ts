@@ -3,10 +3,17 @@ import { typify } from "./lib";
 import { SwagDef, SwagParam, SwaggerSpec } from "./typeDef";
 
 export function swag(spec: SwaggerSpec, ClassName = "Api") {
+  let scheme = spec.schemes.includes("https") ? "https" : "http";
+  let basePath = spec.basePath || "/";
+  let host = spec.host;
+
+  let Server = `${scheme}://${host}${basePath}`;
+
   let Def: SwagDef = {
     Types: [],
     Methods: [],
-    ClassName
+    ClassName,
+    Server
   };
   for (let Path of Object.keys(spec.paths)) {
     for (let Method of Object.keys(spec.paths[Path])) {

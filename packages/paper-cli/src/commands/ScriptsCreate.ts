@@ -7,23 +7,23 @@
     static flags = {  
     "isEnabled": flags.boolean({
       description: "Determines if the script is enabled or not.  Defaults to true",
-      required: undefined,  
+      required: false,  
     }), 
     "machineId": flags.string({
       description: "Machine id of a machine that should execute this script at startup",
-      required: undefined,  
+      required: false,  
     }), 
     "runOnce": flags.boolean({
       description: "Determines if the script is run on first boot or every boot.  Defaults to false",
-      required: undefined,  
+      required: false,  
     }), 
     "scriptDescription": flags.string({
       description: "Description of the script",
-      required: undefined,  
+      required: false,  
     }), 
     "scriptFile": flags.string({
       description: "File path to a file containing the script data; either scriptFile or scriptText must be provide.",
-      required: undefined,  
+      required: false,  
     }), 
     "scriptName": flags.string({
       description: "A unique name for the script",
@@ -31,7 +31,7 @@
     }), 
     "scriptText": flags.string({
       description: "A string containing the script text; either scriptFile or scriptText must be provide.",
-      required: undefined,  
+      required: false,  
     }),} 
     async run() {
       await this.auth();

@@ -29,7 +29,7 @@ export function makeCliFlags(CombinedParams: FlagParam[]) {
     Flags += ` 
     "${name}": flags.${convertType(type || schema.type)}({
       description: ${JSON.stringify(description)},
-      required: ${!!required || hiddenPrompt}, ${options} ${requiredHiddenParam}
+      required: ${!!required}, ${options} ${requiredHiddenParam}
     }),`;
   }
   Flags += `} `;

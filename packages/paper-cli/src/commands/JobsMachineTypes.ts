@@ -7,19 +7,19 @@
     static flags = {  
     "region": flags.string({
       description: "Optional region to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "cluster": flags.string({
       description: "Optional cluster to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "machineType": flags.string({
       description: "Optional machine type to macth on",
-      required: undefined,  
+      required: false,  
     }), 
     "isBusy": flags.boolean({
       description: "Optional busy status value to match on",
-      required: undefined,  
+      required: false,  
     }),} 
     async run() {
       await this.auth();

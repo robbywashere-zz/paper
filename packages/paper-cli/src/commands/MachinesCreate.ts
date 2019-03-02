@@ -7,7 +7,7 @@
     static flags = {  
     "assignPublicIp": flags.boolean({
       description: "Assign a new public ip address on machine creation. Cannot be used with dynamicPublicIp.",
-      required: undefined,  
+      required: false,  
     }), 
     "billingType": flags.string({
       description: "Either 'monthly' or 'hourly' billing",
@@ -15,19 +15,19 @@
     }), 
     "dynamicPublicIp": flags.boolean({
       description: "Assigns a new public ip address on machine start and releases it from the account on machine stop. Cannot be used with assignPublicIp.",
-      required: undefined,  
+      required: false,  
     }), 
     "email": flags.string({
       description: "If creating a new user for this machine, specify their email address (mutually exclusive with userId)",
-      required: undefined,  
+      required: false,  
     }), 
     "firstName": flags.string({
       description: "If creating a new user, specify their first name (mutually exclusive with userId)",
-      required: undefined,  
+      required: false,  
     }), 
     "lastName": flags.string({
       description: "If creating a new user, specify their last name (mutually exclusive with userId)",
-      required: undefined,  
+      required: false,  
     }), 
     "machineName": flags.string({
       description: "A memorable name for this machine",
@@ -39,11 +39,11 @@
     }), 
     "networkId": flags.string({
       description: "If creating on a specific network, specify its id",
-      required: undefined,  
+      required: false,  
     }), 
     "notificationEmail": flags.string({
       description: "Send a notification to this email address when complete",
-      required: undefined,  
+      required: false,  
     }), 
     "password": flags.boolean({
       description: "If creating a new user, specify their password (mutually exclusive with userId)",
@@ -55,7 +55,7 @@
     }), 
     "scriptId": flags.string({
       description: "The script id of a script to be run on startup.  See the [Script Guide]{@link https://paperspace.github.io/paperspace-node/scripts.md} for more info on using scripts.",
-      required: undefined,  
+      required: false,  
     }), 
     "size": flags.integer({
       description: "Storage size for the machine in GB",
@@ -63,7 +63,7 @@
     }), 
     "teamId": flags.string({
       description: "If creating the machine for a team, specify the team id",
-      required: undefined,  
+      required: false,  
     }), 
     "templateId": flags.string({
       description: "Template id of the template to use for creating this machine",
@@ -71,7 +71,7 @@
     }), 
     "userId": flags.string({
       description: "If assigning to an existing user other than yourself, specify the user id (mutually exclusive with email, password, firstName, lastName)",
-      required: undefined,  
+      required: false,  
     }),} 
     async run() {
       await this.auth();

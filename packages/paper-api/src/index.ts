@@ -336,7 +336,11 @@ export type UsersListResponse = Array<{
         }>;
 export default class Api { 
 
-    constructor(public apiKey?: string) {}
+    public baseUrl = "https://api.paperspace.io/"
+
+    constructor(baseUrl?: string, public apiKey?: string) {
+      if (baseUrl) this.baseUrl = baseUrl;
+    }
 
     SetRequestMethod(fn: RequestFunction){
       this.request = fn.bind(this) as RequestFunction;
@@ -346,7 +350,7 @@ export default class Api {
       if (!this.apiKey && !skipAuth) {
         throw new Error(`No api key, try #.SetToken(apiKey: string)`);
       }
-      let R = request(req.method, req.path);
+      let R = request(req.method, this.baseUrl + req.path);
       if (req.bodyParams) R = R.send(req.bodyParams);
       if (req.queryParams) R = R.query(req.queryParams);
       return skipAuth

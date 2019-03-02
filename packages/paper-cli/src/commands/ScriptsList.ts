@@ -7,35 +7,35 @@
     static flags = {  
     "id": flags.string({
       description: "Optional script id to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "ownerType": flags.string({
       description: "Optional ownerType to match on, either 'user' or 'team'",
-      required: undefined,  
+      required: false,  
     }), 
     "ownerId": flags.string({
       description: "Optional ownerId to match on, either a userId or teamId",
-      required: undefined,  
+      required: false,  
     }), 
     "name": flags.string({
       description: "Optional name to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "description": flags.string({
       description: "Optional description to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "dtCreated": flags.string({
       description: "Optional datetime created value to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "isEnabled": flags.boolean({
       description: "Optional isEnabled value to match on, either true or false",
-      required: undefined,  
+      required: false,  
     }), 
     "runOnce": flags.boolean({
       description: "Optional runOnce value to match on, either true or false",
-      required: undefined,  
+      required: false,  
     }),} 
     async run() {
       await this.auth();

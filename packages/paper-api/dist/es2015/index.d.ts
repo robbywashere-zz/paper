@@ -330,7 +330,8 @@ export declare type UsersListResponse = Array<{
 }>;
 export default class Api {
     apiKey?: string | undefined;
-    constructor(apiKey?: string | undefined);
+    baseUrl: string;
+    constructor(baseUrl?: string, apiKey?: string | undefined);
     SetRequestMethod(fn: RequestFunction): void;
     request: RequestFunction;
     SetToken(apiKey: string): void;

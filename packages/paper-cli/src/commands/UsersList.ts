@@ -7,27 +7,27 @@
     static flags = {  
     "id": flags.string({
       description: "Optional user id to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "email": flags.string({
       description: "Optional email to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "firstname": flags.string({
       description: "Optional firstname to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "lastname": flags.string({
       description: "Optional lastname to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "dtCreated": flags.string({
       description: "Optional datetime created value to match on",
-      required: undefined,  
+      required: false,  
     }), 
     "teamId": flags.string({
       description: "Optional teamId to match on",
-      required: undefined,  
+      required: false,  
     }),} 
     async run() {
       await this.auth();
