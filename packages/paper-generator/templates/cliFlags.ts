@@ -1,4 +1,4 @@
-import { FlagParam } from "../typeDef";
+import { SwagParam } from "../typeDef";
 
 function convertType(type: string) {
   switch (type) {
@@ -8,28 +8,19 @@ function convertType(type: string) {
       return type;
   }
 }
-export function makeCliFlags(CombinedParams: FlagParam[]) {
+export function makeCliFlags(CombinedParams: SwagParam[]) {
   let Flags = `{ `;
   for (let i = 0; i < CombinedParams.length; i++) {
-    let {
-      name,
-      description,
-      type,
-      schema,
-      required,
-      hiddenPrompt
-    } = CombinedParams[i];
-    const requiredHiddenParam = !hiddenPrompt
-      ? ""
-      : `
-      hidden: true,`;
+    const { name, description, type, schema, required } = CombinedParams[i];
+    const isRequired = required ? "required: true," : "";
+
     let options = CombinedParams[i].enum
       ? ` options:` + JSON.stringify(CombinedParams[i].enum) + ","
       : "";
     Flags += ` 
     "${name}": flags.${convertType(type || schema.type)}({
       description: ${JSON.stringify(description)},
-      required: ${!!required}, ${options} ${requiredHiddenParam}
+      ${isRequired} ${options}
     }),`;
   }
   Flags += `} `;

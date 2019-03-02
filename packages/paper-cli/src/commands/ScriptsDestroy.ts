@@ -7,12 +7,12 @@
     static flags = {  
     "scriptId": flags.string({
       description: "The id of the script to destroy",
-      required: true,  
+      required: true, 
     }),} 
     async run() {
       await this.auth();
       const params = await this.params(
-          this.parse(ScriptsDestroy).flags, [], []
+          this.parse(ScriptsDestroy).flags,[], [], []
       );
       return this.client.ScriptsDestroy(params);
     }

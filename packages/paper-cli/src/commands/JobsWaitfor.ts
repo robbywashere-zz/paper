@@ -7,16 +7,16 @@
     static flags = {  
     "jobId": flags.string({
       description: "Id of the job to wait for",
-      required: true,  
+      required: true, 
     }), 
     "state": flags.string({
       description: "Name of the state to wait for",
-      required: true,  
+      required: true, 
     }),} 
     async run() {
       await this.auth();
       const params = await this.params(
-          this.parse(JobsWaitfor).flags, [], []
+          this.parse(JobsWaitfor).flags,[], [], []
       );
       return this.client.JobsWaitfor(params);
     }

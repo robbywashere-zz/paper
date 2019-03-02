@@ -7,12 +7,12 @@
     static flags = {  
     "jobId": flags.string({
       description: "Id of the job to shut down",
-      required: true,  
+      required: true, 
     }),} 
     async run() {
       await this.auth();
       const params = await this.params(
-          this.parse(JobsStop).flags, [], []
+          this.parse(JobsStop).flags,[], [], []
       );
       return this.client.JobsStop(params);
     }

@@ -1,18 +1,22 @@
-import { SwagDefMethod, FlagParam } from "../typeDef";
+import { SwagDefMethod, SwagParam } from "../typeDef";
 import { makeCliFlags } from "./cliFlags";
 export function makeCliCommand(def: SwagDefMethod) {
-  let CombinedParams: FlagParam[] = [];
-  let MaskedParams: FlagParam[] = [];
+  let CombinedParams: SwagParam[] = [];
+  let MaskedParams: SwagParam[] = [];
   [...def.CliParams, ...def.AllParams].forEach(param => {
     if (param.name.match(/password/i)) {
-      CombinedParams.push({
-        ...param,
-        type: "boolean",
-        hiddenPrompt: !!param.required
-      });
-      MaskedParams.push(param);
+      if (!param.required) {
+        CombinedParams.push({
+          ...param,
+          type: "boolean"
+        });
+      }
+      MaskedParams.push({ ...param });
     } else {
-      CombinedParams.push({ ...param });
+      if (!param["x-cli-prompt"]) CombinedParams.push({ ...param });
+      else {
+        CombinedParams.push({ ...param, required: false });
+      }
     }
   });
   const optionalMasked = JSON.stringify(
@@ -20,6 +24,9 @@ export function makeCliCommand(def: SwagDefMethod) {
   );
   const requiredMasked = JSON.stringify(
     MaskedParams.filter(p => p.required).map(p => p.name)
+  );
+  const promptIfMissing = JSON.stringify(
+    CombinedParams.filter(p => p["x-cli-prompt"]).map(p => p.name)
   );
   const flags = makeCliFlags(CombinedParams);
   const className = `${def.OpId}`;
@@ -35,7 +42,7 @@ export function makeCliCommand(def: SwagDefMethod) {
     async run() {
       ${awaitAuth}
       const params = await this.params(
-          this.parse(${className}).flags, ${optionalMasked}, ${requiredMasked}
+          this.parse(${className}).flags,${optionalMasked}, ${requiredMasked}, ${promptIfMissing}
       );
       return this.client.${def.OpId}(params);
     }

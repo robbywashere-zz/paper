@@ -7,12 +7,12 @@
     static flags = {  
     "machineId": flags.string({
       description: "Id of the machine to shut down",
-      required: true,  
+      required: true, 
     }),} 
     async run() {
       await this.auth();
       const params = await this.params(
-          this.parse(MachinesStop).flags, [], []
+          this.parse(MachinesStop).flags,[], [], []
       );
       return this.client.MachinesStop(params);
     }

@@ -7,12 +7,12 @@
     static flags = {  
     "jobId": flags.string({
       description: "The id of the job to destroy",
-      required: true,  
+      required: true, 
     }),} 
     async run() {
       await this.auth();
       const params = await this.params(
-          this.parse(JobsDestroy).flags, [], []
+          this.parse(JobsDestroy).flags,[], [], []
       );
       return this.client.JobsDestroy(params);
     }

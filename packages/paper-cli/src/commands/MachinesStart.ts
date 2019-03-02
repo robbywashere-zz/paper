@@ -7,12 +7,12 @@
     static flags = {  
     "machineId": flags.string({
       description: "Id of the machine to start",
-      required: true,  
+      required: true, 
     }),} 
     async run() {
       await this.auth();
       const params = await this.params(
-          this.parse(MachinesStart).flags, [], []
+          this.parse(MachinesStart).flags,[], [], []
       );
       return this.client.MachinesStart(params);
     }

@@ -2404,7 +2404,8 @@
         },
         "email": {
           "description": "Email address of the paperspace user to log in",
-          "type": "string"
+          "type": "string",
+          "x-cli-prompt": true
         },
         "password": {
           "description": "Password for the specified email address",

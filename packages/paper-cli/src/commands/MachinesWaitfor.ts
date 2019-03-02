@@ -7,16 +7,16 @@
     static flags = {  
     "machineId": flags.string({
       description: "Id of the machine to wait for",
-      required: true,  
+      required: true, 
     }), 
     "state": flags.string({
       description: "Name of the state to wait for, either 'off', 'serviceready', 'ready'",
-      required: true,  
+      required: true, 
     }),} 
     async run() {
       await this.auth();
       const params = await this.params(
-          this.parse(MachinesWaitfor).flags, [], []
+          this.parse(MachinesWaitfor).flags,[], [], []
       );
       return this.client.MachinesWaitfor(params);
     }

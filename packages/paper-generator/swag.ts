@@ -34,7 +34,7 @@ export function swag(spec: SwaggerSpec, ClassName = "Api") {
       let bodyParams = params
         .filter(locate("body"))
         .reduce<{ properties: {}; required: [] }>(
-          (result, { schema, required }) => ({
+          (result, { schema }) => ({
             ...result,
             ...(resolveRef(spec, schema["$ref"]) || schema)
           }),

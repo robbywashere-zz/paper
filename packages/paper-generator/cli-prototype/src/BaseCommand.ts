@@ -20,23 +20,36 @@ export abstract class BaseCommand extends Command {
     return this.client.login(await this.fetchCredentials());
   }
 
-  async prompt<Opt extends string, Req extends string>(
+  async prompt<Prmt extends string, Opt extends string, Req extends string>(
     optional: Array<Opt>,
-    required: Array<Req>
+    required: Array<Req>,
+    promptable: Array<Prmt>
   ) {
     let result: { [K in Req]: string } &
-      { [K in Opt]?: string } = Object.create(null);
+      { [K in Opt]?: string } &
+      { [K in Prmt]: string } = Object.create(null);
+    for (let k of promptable) result[k] = await cli.prompt(k);
     for (let k of [...optional, ...required])
       result[k] = await cli.prompt(k, { type: "mask" });
     return result;
   }
 
-  async params<T extends {}, Req extends string, Opt extends keyof T & string>(
+  async params<
+    T extends {},
+    Req extends string,
+    Opt extends keyof T & string,
+    Prmt extends keyof T & string
+  >(
     flags: T,
     optional: Array<Opt>,
-    required: Array<Req>
+    required: Array<Req>,
+    promptable: Array<Prmt>
   ) {
-    const prompts = await this.prompt(optional.filter(k => flags[k]), required);
+    const prompts = await this.prompt(
+      optional.filter(k => flags[k]),
+      required,
+      promptable.filter(k => !flags[k])
+    );
     for (let k of optional) delete flags[k];
     return { ...flags, ...prompts } as Pick<T, Exclude<keyof T, Req | Opt>> &
       typeof prompts;

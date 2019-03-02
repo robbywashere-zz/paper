@@ -7,16 +7,16 @@
     static flags = {  
     "machineId": flags.string({
       description: "Id of the machine to get utilization data for",
-      required: true,  
+      required: true, 
     }), 
     "billingMonth": flags.string({
       description: "Billing period to query in `YYYY-MM` format",
-      required: true,  
+      required: true, 
     }),} 
     async run() {
       await this.auth();
       const params = await this.params(
-          this.parse(MachinesUtilization).flags, [], []
+          this.parse(MachinesUtilization).flags,[], [], []
       );
       return this.client.MachinesUtilization(params);
     }

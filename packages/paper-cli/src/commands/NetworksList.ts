@@ -7,36 +7,36 @@
     static flags = {  
     "id": flags.string({
       description: "Optional network id to match on",
-      required: false,  
+       
     }), 
     "name": flags.string({
       description: "Optional name to match on",
-      required: false,  
+       
     }), 
     "region": flags.string({
       description: "Optional region to match on",
-      required: false,  
+       
     }), 
     "dtCreated": flags.string({
       description: "Optional datetime created value to match on",
-      required: false,  
+       
     }), 
     "network": flags.string({
       description: "Optional network to match on",
-      required: false,  
+       
     }), 
     "netmask": flags.string({
       description: "Optional netmask to match on",
-      required: false,  
+       
     }), 
     "teamId": flags.string({
       description: "Optional teamId to match on",
-      required: false,  
+       
     }),} 
     async run() {
       await this.auth();
       const params = await this.params(
-          this.parse(NetworksList).flags, [], []
+          this.parse(NetworksList).flags,[], [], []
       );
       return this.client.NetworksList(params);
     }

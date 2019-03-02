@@ -1,16 +1,18 @@
+import { boolean } from "@oclif/parser/lib/flags";
+
 export type SwagDef = {
   Types: string[];
   Methods: SwagDefMethod[];
   ClassName: string;
   Server: string;
 };
-export type FlagParam = { hiddenPrompt?: boolean } & SwagParam;
 export type SwagParam = {
   name: string;
   required?: boolean;
   type: "boolean" | "string" | "number" | string;
   description?: string;
   enum?: string[];
+  "x-cli-prompt"?: boolean;
   schema: {
     [key: string]: any;
     type: "boolean" | "string" | "number" | string;

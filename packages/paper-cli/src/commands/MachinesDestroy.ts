@@ -7,16 +7,16 @@
     static flags = {  
     "machineId": flags.string({
       description: "The id of the machine to destroy",
-      required: true,  
+      required: true, 
     }), 
     "releasePublicIp": flags.boolean({
       description: "releases any assigned public ip address for the machine; defaults to false",
-      required: false,  
+       
     }),} 
     async run() {
       await this.auth();
       const params = await this.params(
-          this.parse(MachinesDestroy).flags, [], []
+          this.parse(MachinesDestroy).flags,[], [], []
       );
       return this.client.MachinesDestroy(params);
     }
