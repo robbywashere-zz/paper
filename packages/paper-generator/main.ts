@@ -7,7 +7,6 @@ import { makeCliCommand } from "./templates/cliCommand";
 import { writeFileSync } from "fs";
 import { ObjTmpl } from "./lib";
 import { SwagDef } from "./typeDef";
-import { pathToFileURL } from "url";
 
 const CLI_NAME = "paper-cli";
 const API_NAME = "paper-api";
@@ -37,8 +36,8 @@ function checkStatus() {
   return status.some(checkPath(CLI_NAME)) || status.some(checkPath(API_NAME));
 }
 
-if (checkStatus())
-  throw new Error(`Uncommited changes, aborting to avoid overwrite...`);
+if (process.env.FORCE_BUILD !== "true" && checkStatus())
+  throw new Error(`Uncommited change(s), aborting to avoid overwrite...`);
 Build(ApiDef);
 
 function Build(swagDef: SwagDef) {

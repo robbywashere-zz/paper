@@ -340,12 +340,10 @@ export default class Api {
     /** Logs in the user and acquires an api key
      * @method
      * @name LoginUser
-       * @param {string} [apiToken] - Optional name of an existing API token for the user's account
-  * @param {string} email - Email address of the paperspace user to log in
+       * @param {string} email - Email address of the paperspace user to log in
   * @param {string} password - Password for the specified email address
      */
     LoginUser(parameters: {
-        apiToken?: string;
         email: string;
         password: string;
     }): Promise<ResponseWithBody<LoginUserResponse>>;
