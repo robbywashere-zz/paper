@@ -1,5 +1,5 @@
 import { locate, collectNames, resolveRef } from "./lib";
-import { typify } from "./lib";
+import { typify, get } from "./lib";
 import { SwagDef, SwagParam, SwaggerSpec } from "./typeDef";
 
 export function swag(spec: SwaggerSpec, ClassName = "Api") {
@@ -19,6 +19,17 @@ export function swag(spec: SwaggerSpec, ClassName = "Api") {
     for (let Method of Object.keys(spec.paths[Path])) {
       const methodObj = spec.paths[Path][Method];
       const OpId = methodObj.operationId;
+      const Topic = (get(
+        OpId.match(/([A-Z].+?)[A-Z].+/),
+        "1",
+        OpId
+      ) as string).toLowerCase();
+      const SubCommand = (get(
+        OpId.match(/[A-Z].+?([A-Z].+)/),
+        "1",
+        OpId
+      ) as string).toLowerCase();
+
       const params = methodObj.parameters;
       const resp = ((Object.values(methodObj.responses)[0] || {}) as any)
         .schema;
@@ -65,6 +76,7 @@ export function swag(spec: SwaggerSpec, ClassName = "Api") {
       const QueryParams = collectNames(queryParams);
       const PathParams = collectNames(pathParams);
       const BodyParams = Object.keys(bodyParams.properties || {});
+      const Filename = SubCommand + ".ts";
       const ParamsTyped = AllParams.map(qp => typify(qp, RequiredParams)).join(
         "; "
       );
@@ -73,11 +85,14 @@ export function swag(spec: SwaggerSpec, ClassName = "Api") {
         Description,
         AllParams,
         CliParams,
+        Filename,
         BodyParams,
         PathParams,
         QueryParams,
         ParamsTyped,
         SkipAuth,
+        Topic,
+        SubCommand,
         RequiredParams,
         Method: Method.toUpperCase(),
         Path

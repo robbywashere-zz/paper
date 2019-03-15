@@ -19,7 +19,7 @@ export type LoginUserResponse = {
         key: string; 
         name: string; 
         };
-export type JobsArtifactsGetResponse = { 
+export type ArtifactsGetResponse = { 
         Credentials?: { 
         AccessKeyId?: string; 
         SecretAccessKey?: string; 
@@ -28,7 +28,7 @@ export type JobsArtifactsGetResponse = {
         bucket?: string; 
         folder?: string; 
         };
-export type JobsArtifactsListResponse = Array<{ 
+export type ArtifactsListResponse = Array<{ 
         file: string; 
         size: number; 
         }>;
@@ -130,7 +130,7 @@ export type JobsLogsResponse = Array<{
         line?: number; 
         message?: string; 
         }>;
-export type JobsArtifactsDestroyResponse = any;
+export type ArtifactsDestroyResponse = any;
 export type JobsCloneResponse = { 
         artifactsDirectory?: string; 
         cluster?: string; 
@@ -399,17 +399,17 @@ export default class Api {
 
   /** Get the artifacts files for the job with the given id 
    * @method
-   * @name JobsArtifactsGet
+   * @name ArtifactsGet
      * @param {string} jobId - Id of the job to get artifacts for
 * @param {string} [files] - Optional; if getting only certain files, a wildcard pattern to match against, e.g., "myfiles*".  Note: if you include a wildcard you must double-quote the files argument.
 * @param {string} [dest] - Optional; an existing directory to copy the artifacts files to.
    */
   
-  JobsArtifactsGet(parameters: { jobId: string; files?: string; dest?: string }) {
+  ArtifactsGet(parameters: { jobId: string; files?: string; dest?: string }) {
 
   this.checkParams(["jobId"],parameters)
 
-  return this.request<JobsArtifactsGetResponse>({
+  return this.request<ArtifactsGetResponse>({
     path: '/jobs/artifactsGet',
     method: 'GET',
     bodyParams: undefined,
@@ -420,18 +420,18 @@ export default class Api {
 
   /** List job artifact files for the specified job 
    * @method
-   * @name JobsArtifactsList
+   * @name ArtifactsList
      * @param {string} jobId - Id of the job to list artifacts for
 * @param {string} [files] - Optional; wildcard expression of file(s) to list, e.g., "myfiles*".  Note: if you include a wildcard you must double-quote the files argument.
 * @param {boolean} [size] - Optional; include file size in bytes.  '--size' with no value is equivalent to true.
 * @param {boolean} [links] - Optional; include https links to artifacts.  Note: links are only valid for 8 hours. '--links' with no value is equivalent to true.
    */
   
-  JobsArtifactsList(parameters: { jobId: string; files?: string; size?: boolean; links?: boolean }) {
+  ArtifactsList(parameters: { jobId: string; files?: string; size?: boolean; links?: boolean }) {
 
   this.checkParams(["jobId"],parameters)
 
-  return this.request<JobsArtifactsListResponse>({
+  return this.request<ArtifactsListResponse>({
     path: '/jobs/artifactsList',
     method: 'GET',
     bodyParams: undefined,
@@ -571,16 +571,16 @@ export default class Api {
 
   /** Destroy artifact files of the job with the given id 
    * @method
-   * @name JobsArtifactsDestroy
+   * @name ArtifactsDestroy
      * @param {string} jobId - The id of the job to destroy artifacts for
 * @param {string} [files] - Optional; if destroying only certain files, a wildcard pattern to match against, e.g., "myfiles*".  Note: if you include a wildcard you must double-quote the files argument.
    */
   
-  JobsArtifactsDestroy(parameters: { jobId: string; files?: string }) {
+  ArtifactsDestroy(parameters: { jobId: string; files?: string }) {
 
   this.checkParams(["jobId"],parameters)
 
-  return this.request<JobsArtifactsDestroyResponse>({
+  return this.request<ArtifactsDestroyResponse>({
     path: `/jobs/${parameters.jobId}/artifactsDestroy`,
     method: 'POST',
     bodyParams: this.pick(["files"],parameters),

@@ -24,14 +24,14 @@
           "name": "body",
           "required": true,
           "schema": {
-            "$ref": "#/definitions/LoginUserRequestParams"
+            "$ref": "#/definitions/UserLoginRequestParams"
           }
         }],
         "responses": {
           "200": {
             "description": "Expected response to a valid request",
             "schema": {
-              "$ref": "#/definitions/LoginUserResponse"
+              "$ref": "#/definitions/UserLoginResponse"
             }
           },
           "default": {
@@ -44,7 +44,7 @@
         "tags": [
           "login"
         ],
-        "operationId": "LoginUser",
+        "operationId": "UserLogin",
         "summary": "Logs in the user and acquires an api key",
         "x-skip-auth": true
       }
@@ -80,7 +80,7 @@
           "200": {
             "description": "Expected response to a valid request",
             "schema": {
-              "$ref": "#/definitions/JobsArtifactsGetResponse"
+              "$ref": "#/definitions/ArtifactsGetResponse"
             }
           },
           "default": {
@@ -94,9 +94,9 @@
           "ApiKeyAuth": []
         }],
         "tags": [
-          "jobs"
+          "artifacts"
         ],
-        "operationId": "JobsArtifactsGet",
+        "operationId": "ArtifactsGet",
         "summary": "Get the artifacts files for the job with the given id",
         "x-cli-parameters": [{
           "description": "Optional; return JSON object instead of writing to standard out.  '--json' with no value is equivalent to true.",
@@ -147,7 +147,7 @@
           "200": {
             "description": "Expected response to a valid request",
             "schema": {
-              "$ref": "#/definitions/JobsArtifactsListResponse"
+              "$ref": "#/definitions/ArtifactsListResponse"
             }
           },
           "default": {
@@ -161,9 +161,9 @@
           "ApiKeyAuth": []
         }],
         "tags": [
-          "jobs"
+          "artifacts"
         ],
-        "operationId": "JobsArtifactsList",
+        "operationId": "ArtifactsList",
         "summary": "List job artifact files for the specified job",
         "x-cli-parameters": [{
           "description": "Optional; return JSON object instead of writing to standard out.  '--json' with no value is equivalent to true.",
@@ -499,7 +499,7 @@
             "in": "body",
             "name": "body",
             "schema": {
-              "$ref": "#/definitions/JobsArtifactsDestroyRequestParams"
+              "$ref": "#/definitions/ArtifactsDestroyRequestParams"
             }
           }
         ],
@@ -518,9 +518,9 @@
           "ApiKeyAuth": []
         }],
         "tags": [
-          "jobs"
+          "artifacts"
         ],
-        "operationId": "JobsArtifactsDestroy",
+        "operationId": "ArtifactsDestroy",
         "summary": "Destroy artifact files of the job with the given id"
       }
     },
@@ -1679,7 +1679,7 @@
         "message"
       ]
     },
-    "JobsArtifactsDestroyRequestParams": {
+    "ArtifactsDestroyRequestParams": {
       "properties": {
         "files": {
           "description": "Optional; if destroying only certain files, a wildcard pattern to match against, e.g., \"myfiles*\".  Note: if you include a wildcard you must double-quote the files argument.",
@@ -1688,7 +1688,7 @@
       },
       "type": "object"
     },
-    "JobsArtifactsGetResponse": {
+    "ArtifactsGetResponse": {
       "properties": {
         "Credentials": {
           "properties": {
@@ -1713,7 +1713,7 @@
       },
       "type": "object"
     },
-    "JobsArtifactsListResponse": {
+    "ArtifactsListResponse": {
       "items": {
         "properties": {
           "file": {
@@ -2289,7 +2289,7 @@
       },
       "type": "object"
     },
-    "LoginUserRequestParams": {
+    "UserLoginRequestParams": {
       "properties": {
         "email": {
           "description": "Email address of the paperspace user to log in",
@@ -2307,7 +2307,7 @@
       ],
       "type": "object"
     },
-    "LoginUserResponse": {
+    "UserLoginResponse": {
       "properties": {
         "key": {
           "type": "string"

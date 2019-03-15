@@ -50,7 +50,8 @@ function Build(swagDef: SwagDef) {
   $.cp("-R", join(API_PROTO, "*"), API_BUILD);
   Api(API_PATH);
   Cmd(CMD_DIR, swagDef);
-  PkgJson(PKGJSON_PROTO, PKGJSON_BUILD, PROJECT_INFO);
+  const Topics = swagDef.Methods.map(m => m.Topic);
+  PkgJson(PKGJSON_PROTO, PKGJSON_BUILD, PROJECT_INFO, Topics);
 }
 function Api(path: string) {
   const ApiTypes = ApiDef.Types.join("\n");
@@ -58,23 +59,38 @@ function Api(path: string) {
   writeFileSync(path, [apiHeader, ApiTypes, ApiClass].join("\n"));
 }
 
+function BlankTopicsDesc(
+  pkgJson: { [key: string]: any },
+  topicsList: string[]
+) {
+  let topics = Object.create(null);
+  pkgJson["oclif"] = { ...pkgJson["oclif"], topics };
+  for (let topic of topicsList) {
+    topics[topic] = { description: "" };
+  }
+  return pkgJson;
+}
+
 function PkgJson(
   inputPath: string,
   outputPath: string,
-  tmplValues: { [key: string]: string }
+  tmplValues: { [key: string]: string },
+  Topics: string[]
 ) {
-  let packageJson = JSON.stringify(
-    ObjTmpl(require(inputPath), tmplValues),
-    null,
-    4
+  let newPkgJson = BlankTopicsDesc(
+    ObjTmpl(require(inputPath), tmplValues) as { [key: string]: any },
+    Topics
   );
+
+  let packageJson = JSON.stringify(newPkgJson, null, 4);
   writeFileSync(outputPath, packageJson);
 }
 
-function Cmd(path: string, swagDef: SwagDef) {
+function Cmd(cmdRootPath: string, swagDef: SwagDef) {
   for (let method of swagDef.Methods) {
-    const filename = method.OpId + ".ts";
-    const commandPath = join(path, filename);
+    const topicPath = join(cmdRootPath, method.Topic);
+    $.mkdir("-p", topicPath);
+    const commandPath = join(topicPath, method.Filename);
     writeFileSync(commandPath, makeCliCommand(method));
   }
 }

@@ -30,6 +30,9 @@ export type SwagDefMethod = {
   Method: string;
   SkipAuth: boolean;
   Description?: string;
+  Topic: string;
+  SubCommand: string;
+  Filename: string;
   Path: string;
 };
 export type SwaggerSpec = {

@@ -48,7 +48,30 @@
         "bin": "paper",
         "plugins": [
             "@oclif/plugin-help"
-        ]
+        ],
+        "topics": {
+            "artifacts": {
+                "description": ""
+            },
+            "jobs": {
+                "description": ""
+            },
+            "machines": {
+                "description": ""
+            },
+            "networks": {
+                "description": ""
+            },
+            "scripts": {
+                "description": ""
+            },
+            "templates": {
+                "description": ""
+            },
+            "users": {
+                "description": ""
+            }
+        }
     },
     "repository": "robbywashere/paper",
     "scripts": {

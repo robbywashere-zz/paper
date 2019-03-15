@@ -34,7 +34,7 @@ export function makeCliCommand(def: SwagDefMethod) {
   const awaitAuth = !def.SkipAuth ? `await this.auth();` : "";
   return `
   import { flags } from "@oclif/command";
-  import { BaseCommand } from "../BaseCommand";
+  import { BaseCommand } from "../../BaseCommand";
 
   export default class ${className} extends BaseCommand {
     static description = ${description}
